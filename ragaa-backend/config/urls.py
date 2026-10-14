@@ -1,3 +1,4 @@
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -8,8 +9,7 @@ urlpatterns = [
     path("api/", include("music.urls")),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(
-        "media/",
-        document_root=settings.BASE_DIR
-    )
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+)
