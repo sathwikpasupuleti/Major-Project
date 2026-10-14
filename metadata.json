@@ -1,0 +1,6 @@
+{
+  "name": "Ragaa - Music Streaming",
+  "description": "Every mood. Every beat. Multilingual music streaming platform for Telugu, Hindi, Tamil, and English music discovery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
