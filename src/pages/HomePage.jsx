@@ -301,7 +301,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Songs from Django */}
+      {/* All songs in a horizontal row */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -321,17 +321,22 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="flex flex-nowrap gap-4 overflow-x-auto overflow-y-hidden pb-4 snap-x snap-mandatory">
           {isLoading ? (
-            <p className="col-span-full text-sm text-zinc-400">
+            <p className="text-sm text-zinc-400">
               Loading songs...
             </p>
           ) : filteredSongs.length > 0 ? (
-            filteredSongs.slice(0, 6).map((song) => (
-              <SongCard key={song.id} song={song} />
+            filteredSongs.map((song) => (
+              <div
+                key={song.id}
+                className="w-[170px] min-w-[170px] shrink-0 snap-start sm:w-[200px] sm:min-w-[200px]"
+              >
+                <SongCard song={song} />
+              </div>
             ))
           ) : (
-            <p className="col-span-full text-sm text-zinc-400">
+            <p className="text-sm text-zinc-400">
               {apiError
                 ? 'Unable to load songs. Check that Django is running and the API URL is correct.'
                 : 'No songs available for this language. Add songs through Django Admin.'}
@@ -340,7 +345,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Artists from Django */}
+      {/* All artists in a horizontal row */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -356,8 +361,7 @@ export default function HomePage() {
           </span>
         </div>
 
-        {/* Horizontal, swipeable artist cards */}
-        <div className="flex flex-nowrap gap-4 overflow-x-auto overflow-y-hidden pb-4 snap-x snap-mandatory scrollbar-hide">
+        <div className="flex flex-nowrap gap-4 overflow-x-auto overflow-y-hidden pb-4 snap-x snap-mandatory">
           {isLoading ? (
             <p className="text-sm text-zinc-400">
               Loading artists...
@@ -381,7 +385,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Albums from Django */}
+      {/* All albums in a horizontal row */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -397,17 +401,22 @@ export default function HomePage() {
           </span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="flex flex-nowrap gap-4 overflow-x-auto overflow-y-hidden pb-4 snap-x snap-mandatory">
           {isLoading ? (
-            <p className="col-span-full text-sm text-zinc-400">
+            <p className="text-sm text-zinc-400">
               Loading albums...
             </p>
           ) : filteredAlbums.length > 0 ? (
             filteredAlbums.map((album) => (
-              <AlbumCard key={album.id} album={album} />
+              <div
+                key={album.id}
+                className="w-[180px] min-w-[180px] shrink-0 snap-start sm:w-[220px] sm:min-w-[220px]"
+              >
+                <AlbumCard album={album} />
+              </div>
             ))
           ) : (
-            <p className="col-span-full text-sm text-zinc-400">
+            <p className="text-sm text-zinc-400">
               {albumError
                 ? 'Unable to load albums. Check the Django albums API.'
                 : 'No albums available for this language. Add albums through Django Admin.'}
