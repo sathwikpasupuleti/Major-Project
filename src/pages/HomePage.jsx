@@ -1,4 +1,3 @@
-
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -180,7 +179,6 @@ export default function HomePage() {
     [history, songs, songsList]
   );
 
-  // IMPORTANT: never show curated/demo playlists on Home.
   // Only playlists explicitly created by the user are displayed.
   const userPlaylists = useMemo(
     () =>
@@ -197,6 +195,7 @@ export default function HomePage() {
 
   return (
     <div className="px-4 sm:px-8 py-6 max-w-7xl mx-auto space-y-10">
+
       {/* Welcome banner */}
       <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#1F1B3B] via-[#1B1C2E] to-[#161726] border border-purple-800/40 p-6 sm:p-8 shadow-xl">
         <div className="absolute top-0 right-0 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
@@ -262,6 +261,7 @@ export default function HomePage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Compass className="w-5 h-5 text-[#8B5CF6]" />
+
             <h2 className="text-lg sm:text-xl font-bold text-white">
               Discover by Mood
             </h2>
@@ -287,9 +287,11 @@ export default function HomePage() {
                 className={`rounded-2xl border border-purple-900/30 bg-gradient-to-br ${mood.color} p-4 hover:border-purple-500/60 transition-all`}
               >
                 <div className="text-2xl mb-3">{mood.emoji}</div>
+
                 <div className="text-sm font-bold text-white">
                   {mood.name}
                 </div>
+
                 <div className="text-xs text-zinc-400 mt-1">
                   {count} matching {count === 1 ? 'song' : 'songs'}
                 </div>
@@ -299,11 +301,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Real songs from Django */}
+      {/* Songs from Django */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Flame className="w-5 h-5 text-amber-400" />
+
             <h2 className="text-lg sm:text-xl font-bold text-white">
               Songs in Your Library
             </h2>
@@ -337,11 +340,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Real artists from Django */}
+      {/* Artists from Django */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Users className="w-5 h-5 text-[#8B5CF6]" />
+
             <h2 className="text-lg sm:text-xl font-bold text-white">
               Artists
             </h2>
@@ -352,17 +356,23 @@ export default function HomePage() {
           </span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {/* Horizontal, swipeable artist cards */}
+        <div className="flex flex-nowrap gap-4 overflow-x-auto overflow-y-hidden pb-4 snap-x snap-mandatory scrollbar-hide">
           {isLoading ? (
-            <p className="col-span-full text-sm text-zinc-400">
+            <p className="text-sm text-zinc-400">
               Loading artists...
             </p>
           ) : filteredArtists.length > 0 ? (
             filteredArtists.map((artist) => (
-              <ArtistCard key={artist.id} artist={artist} />
+              <div
+                key={artist.id}
+                className="w-[220px] min-w-[220px] shrink-0 snap-start sm:w-[240px] sm:min-w-[240px]"
+              >
+                <ArtistCard artist={artist} />
+              </div>
             ))
           ) : (
-            <p className="col-span-full text-sm text-zinc-400">
+            <p className="text-sm text-zinc-400">
               {artistError
                 ? 'Unable to load artists. Check the Django artists API.'
                 : 'No artists available. Add artists through Django Admin.'}
@@ -371,11 +381,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Real albums from Django */}
+      {/* Albums from Django */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Disc className="w-5 h-5 text-[#8B5CF6]" />
+
             <h2 className="text-lg sm:text-xl font-bold text-white">
               Albums
             </h2>
@@ -407,10 +418,13 @@ export default function HomePage() {
 
       {/* Recently played and user-created playlists */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-2">
+
+        {/* Recently played */}
         <section className="lg:col-span-6 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-[#8B5CF6]" />
+
               <h3 className="text-base font-bold text-white">
                 Recently Played
               </h3>
@@ -443,10 +457,12 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* User playlists */}
         <section className="lg:col-span-6 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ListMusic className="w-4 h-4 text-[#8B5CF6]" />
+
               <h3 className="text-base font-bold text-white">
                 Your Playlists
               </h3>
