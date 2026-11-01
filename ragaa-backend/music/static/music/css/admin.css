@@ -1,0 +1,94 @@
+
+/* Ragaa Admin - Custom Styling */
+
+:root {
+    --primary: #8b5cf6;
+    --primary-dark: #6d28d9;
+    --background: #f5f3fa;
+}
+
+/* Page background */
+body {
+    background: var(--background);
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+#header {
+    background: #211536;
+    color: white;
+    padding: 16px 25px;
+}
+
+#branding h1,
+#branding h1 a {
+    color: #c4a5ff;
+    font-weight: bold;
+}
+
+/* Links */
+a:link,
+a:visited {
+    color: #7041c7;
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* Buttons */
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input {
+    background: var(--primary) !important;
+    border-radius: 6px;
+    border: none;
+    padding: 8px 14px;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+.submit-row input:hover {
+    background: var(--primary-dark) !important;
+}
+
+/* Tables */
+#changelist table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#changelist thead th {
+    background: #eee7fa;
+    color: #39245c;
+}
+
+#changelist tbody tr:hover {
+    background: #f1eaff;
+}
+
+/* Form sections */
+.module,
+.inline-group {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.module h2,
+.module caption {
+    background: #eee7fa;
+    color: #39245c;
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+    border-radius: 5px !important;
+}
+
+/* Content spacing */
+#content {
+    padding: 25px;
+}
